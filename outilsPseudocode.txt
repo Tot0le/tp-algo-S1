@@ -1,0 +1,49 @@
+procedure verifTypeSaisi(message : chaine, msgErreur : chaine, monType : chaine)
+debut
+    selon monType faire
+        cas 1 si monType = "réel":
+        
+
+fin
+
+
+procedure saisieEntier(message : chaine, msgErreur : chaine, borneMin : entier, borneMax : entier, MinInclus : booleen, MaxInclus : booleen ; valeur : entier)
+debut
+    # Demande a l'utilisateur de saisir une valeur entiere.
+
+    avec valeur : entier
+    
+    afficher(message)
+    saisir valeur
+
+    verifEntier(valeur, msgErreur, borneMin, borneMax, MinInclus, MaxInclus)
+
+    retourne valeur
+fin saisieEntier
+
+procedure verifEntier(valeur, msgErreur, borneMin, borneMax, MinInclus, MaxInclus)
+debut
+    # Verifie si un reel est bien dans un intervale donne.
+
+    si MinInclus et MaxInclus alors
+        tant que valeur < borneMin ou valeur > borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinonsi non MinInclus et MaxInclus alors
+        tant que valeur <= borneMin ou valeur > borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinonsi MinInclus et non MaxInclus alors
+        tant que valeur < borneMin ou valeur >= borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinon alors
+        tant que valeur <= borneMin or valeur >= borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+
+fin verifEntier
+

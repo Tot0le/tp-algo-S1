@@ -1,0 +1,22 @@
+fonction PGCD_Rec(a : entier, b : entier) retourne entier
+debut
+    si a = b alors
+        retourne a
+    sinon si a > b alors
+        retourne PGCD_Rec(a-b, b)
+    sinon
+        retourne PGCD_Rec(a, b-a)
+    finsi
+fin
+
+fonction PGCD(a : entier, b : entier) retourne entier
+debut
+    tant que a != b faire
+        si a > b alors
+            a = a - b
+        sinon
+            b = b - a
+    finfaire
+
+    retourne a
+fin

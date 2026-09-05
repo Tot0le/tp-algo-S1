@@ -1,0 +1,84 @@
+procedure verificationAge(age : entier, message : chaine; age : entier)
+début
+	tant que age < 0 ou age > 150 :
+		Afficher(message) 
+		saisir age
+	finfaire
+fin
+
+procedure verificationEtudiant(message : chaine ; etudiantStr : chaine)
+début
+	tant que etudiantStr != "y" et etudiantStr != "n" faire
+		Afficher(message)
+		Saisir etudiantStr
+	finfaire
+fin
+
+procedure conversionEtudiant(etudiantStr : chaine ; etudiant : booleen)
+début
+	si etudiantStr = "y" faire
+		etudiant <- True
+	sinon
+		etudiant <- False
+fin
+
+procedure saisieEntier(affichage : chaine, msgErreur : chaine ; val: entier)
+début
+	Afficher(affichage)
+	Saisir val
+
+	verificationAge(val, msgErreur)
+fin
+
+procedure saisieEtudiant(affichage : chaine, msgErreur : chaine; EtudiantStr : chaine, etudiant);
+début
+	Afficher(affichage)
+	saisir EtudiantStr
+
+	verificationEtudiant(msgErreur, EtudiantStr)
+	conversionEtudiant(EtudiantStr, etudiant)
+fin
+
+
+
+programme ex2TP4
+début
+	avec : age1 : entier
+			age2 : entier
+			age3 : entier
+			age4 : entier
+			etudiant1 : booleen
+			etudiant2 : booleen
+			etudiant3 : booleen
+			etudiant4 : booleen
+			etudiantStr : chaine
+			cbEtesVous : entier
+
+	Afficher("Combien êtes vous (maximum 4) : ")
+	Saisir(cbEtesVous)
+	
+	tant que cbEtesVous < 0 ou cbEtesVous > 4 faire :
+		Afficher("Nombre de personne limité à 4 maximum")
+		Saisir(cbEtesVous)
+	
+	/*Saisie et verif de la première personne */
+	saisieEntier("Saisir l'âge de la première personne : ", "Saisie invalide. Saisir l'âge de la première personne : ", age1)
+	saisieEtudiant("Cette personne est-elle étudiante ? (y/n) :", "Saisie invalide. Cette personne est-elle étudiante ? (Écrivez 'y' pour oui ou 'n' pour non) : ", etudiantStr, etudiant1)
+
+	si cbEtesVous >= 2 :
+		/*Saisie et verif de la deuxieme personne */
+		saisieEntier("Saisir l'âge de la deuxième personne : ", "Saisie invalide. Saisir l'âge de la deuxième personne : ", age2)
+		saisieEtudiant("Cette personne est-elle étudiante ? (y/n) :", "Saisie invalide. Cette personne est-elle étudiante ? (Écrivez 'y' pour oui ou 'n' pour non) : ", etudiantStr, etudiant2)
+
+		si cbEtesVous >= 3 :
+			/*Saisie et verif de la troisieme personne */
+			saisieEntier("Saisir l'âge de la troisième personne : ", "Saisie invalide. Saisir l'âge de la troisième personne : ", age3)
+			saisieEtudiant("Cette personne est-elle étudiante ? (y/n) :", "Saisie invalide. Cette personne est-elle étudiante ? (Écrivez 'y' pour oui ou 'n' pour non) : ", etudiantStr, etudiant3)
+	
+			si cbEtesVous >= 4 :
+				/*Saisie et verif de la quatrieme personne */
+				saisieEntier("Saisir l'âge de la quatrième personne : ", "Saisie invalide. Saisir l'âge de la quatrième personne : ", age4)
+				saisieEtudiant("Cette personne est-elle étudiante ? (y/n) :", "Saisie invalide. Cette personne est-elle étudiante ? (Écrivez 'y' pour oui ou 'n' pour non) : ", etudiantStr, etudiant4)
+	
+
+fin

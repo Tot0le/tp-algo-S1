@@ -1,0 +1,79 @@
+programme ex0
+debut
+    avec hauteur : entier
+         indexLigne : entier
+         affichageFinal : chaine
+
+    saisieEntier("Saisissez la hauteur de la pyramide : ", "Saisie incorrecte, veuillez saisir la hauteur de la pyramide : ", 1, MAXENTIER, Vrai, Vrai, hauteur)
+    affichageFinal <- ""
+
+    pour indexLigne de 1 à hauteur + 1 pas de 1 faire
+        affichageFinal <- affichageFinal + A la ligne + mkLignePyramide(indexLigne, hauteur)
+    finfaire
+
+    afficher affichageFinal
+fin
+
+fonction mkLignePyramide (indexRang : entier, hauteur : entier) retourne chaine
+debut
+    avec ligne : chaine
+         nbEtoiles : entier
+         nbEspaces : entier
+         i : entier
+
+    nbEtoiles <- indexRang * 2 - 1
+    nbEspaces <- (hauteur - indexRang) * 2
+    ligne <- ""
+
+    pour i de 0 à nbEspaces pas de 1 faire
+        ligne <- " " + ligne
+    finfaire
+
+    pour i de 0 à nbEtoiles pas de 1 faire
+        ligne <- ligne + "*" + " "
+    finfaire
+
+    retourne ligne
+fin
+
+# Outils :
+procedure saisieEntier(message : chaine, msgErreur : chaine, borneMin : entier, borneMax : entier, MinInclus : booleen, MaxInclus : booleen ; valeur : entier)
+debut
+    # Demande a l'utilisateur de saisir une valeur entiere.
+
+    avec valeur : entier
+    
+    afficher(message)
+    saisir valeur
+
+    verifEntier(valeur, msgErreur, borneMin, borneMax, MinInclus, MaxInclus)
+
+    retourne valeur
+fin saisieEntier
+
+
+procedure verifEntier(valeur, msgErreur, borneMin, borneMax, MinInclus, MaxInclus)
+debut
+    # Verifie si un reel est bien dans un intervale donne.
+
+    si MinInclus et MaxInclus alors
+        tant que valeur < borneMin ou valeur > borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinonsi non MinInclus et MaxInclus alors
+        tant que valeur <= borneMin ou valeur > borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinonsi MinInclus et non MaxInclus alors
+        tant que valeur < borneMin ou valeur >= borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinon alors
+        tant que valeur <= borneMin or valeur >= borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+
+fin verifEntier

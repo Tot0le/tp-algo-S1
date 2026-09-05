@@ -1,0 +1,61 @@
+fonction fibonacci_iterative(k: entier) retourne entier
+debut
+    avec valeur : entier
+         Un : entier
+         Un1 : entier
+         Un2 : entier
+         i : entier
+    
+    Un <- 0
+    Un1 <- 1
+
+    si k = 1 alors
+        valeur <- Un1
+    sinon 
+        pour i de 2 a k+1 pas de 1 faire
+            Un2 <- Un + Un1
+            valeur <- Un2
+            Un <- Un1
+            Un1 <- Un2
+        finfaire
+    finsi
+
+    retourne valeur
+fin fibonacci_iterative
+
+fin fibonacci_recursive(k : entier) retourne entier
+debut
+
+    si k = 1 alors
+        retourne 1
+    sinon si k = 0 alors
+        retourne 0
+    sinon alors
+        retourne fibonacci_recursive(k-1) + fibonacci_recursive(k-2)
+
+fin fibonacci_recursive
+
+def factorielle(nombre : entier) retourne entier
+debut
+    si (nombre = 1 or nombre = 0) alors
+        retourne 1
+    sinon
+        retourne nombre * factorielle(nombre-1)
+fin
+
+fonction combiDirecte(n : entier, k : entier) retourne entier
+debut
+    valeur : entier
+
+    valeur <- factorielle(n) / (factorielle(k) * factorielle(n - k))
+    retourne valeur
+fin
+
+fonction combiRecursive(n : entier, k : entier) retourne entier
+debut
+    si (k = 0 ou n = k) alors
+        retourne 1
+    sinon 
+        retourne combiRecursive(n-1, k) + combiRecursive(n-1, k-1)
+    finsi
+fin

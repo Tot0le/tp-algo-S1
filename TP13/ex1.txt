@@ -1,0 +1,26 @@
+fonction calculEqSecondDegres(a : entier, b : entier, c : entier) retourne tableau[réel]
+debut
+    delta : entier
+    listResult : tableau[réel]
+    
+    delta = b**2 - 4 * a * c
+    
+    selon delta alors
+        cas a = 0 faire
+            afficher "Ce n'est pas une équation du second degrès mais de degrès simple"
+            ajouter(listResult, calculEqPremierDegres(b, c))
+        cas delta = 0 faire
+            ajouter(listResult, (-b / (2 * a)))
+        cas delta > 0 faire
+            ajouter(listResult, (-b - √(delta)) / (2 * a)
+            ajouter(listResult, (-b + √(delta)) / (2 * a)
+        defaut faire
+            afficher "Pas de solution réel pour cette équation."
+    
+    retourne listResult
+fin
+
+fonction calculEqPremierDegres(a : entier, b : entier) retourne entier
+debut
+    retourne -b/a
+fin

@@ -1,0 +1,122 @@
+programme ex1
+début
+    ####################################################
+    # a la fin le programme compare la version fibo reccursive et fibonacci_iterative
+    # Etapes :
+    # verif index
+    # boucle iterative
+    # boucle reccursive
+    # comparer les deux
+    ####################################################
+
+    avec valeur : entier
+         msg : chaine
+         messageErreur : chaine
+         borneMin : entier
+         borneMax : entier
+         valeur : entier
+         t1Itera : reel
+         t2Itera : reel
+         tempsItera : reel
+         t1Rec : reel
+         t2Rec : reel
+         tempsRec : reel
+
+
+    msg <- "Saisissez l'indice de la valeur de fibonacci que vous voulez : "
+    messageErreur <- "Saisie incorrecte, saisissez l'indice de la valeur de fibonacci que vous voulez : "
+    borneMin <- 0
+    borneMax <- constante.MAXENTIER
+    saisieEntier(msg, messageErreur, borneMin, borneMax, Vrai, Vrai, valeur)
+
+    t1Itera <- temps_actuel()
+    fibonacci_iterative(valeur)
+    t2Itera <- temps_actuel()
+    tempsItera <- t2Itera - t1Itera
+
+    afficher "Temps de fibo iteration : ", tempsItera
+
+    t1Rec <- temps_actuel()
+    fibonacci_recursive(valeur)
+    t2Rec <- temps_actuel()
+    tempsRec <- t2Rec - t1Rec
+
+    afficher "Temps de fibo reccursive : ", tempsRec
+fin
+
+
+fonction fibonacci_iterative(k: entier) retourne entier
+debut
+    avec valeur : entier
+         Un : entier
+         Un1 : entier
+         Un2 : entier
+         i : entier
+    
+    Un <- 0
+    Un1 <- 1
+
+    si k = 1 alors
+        valeur <- Un1
+    sinon 
+        pour i de 2 a k+1 pas de 1 faire
+            Un2 <- Un + Un1
+            valeur <- Un2
+            Un <- Un1
+            Un1 <- Un2
+        finfaire
+    finsi
+
+    retourne valeur
+fin fibonacci_iterative
+
+fin fibonacci_recursive(k : entier) retourne entier
+debut
+
+    si k = 1 alors
+        retourne 1
+    sinon si k = 0 alors
+        retourne 0
+    sinon alors
+        retourne fibonacci_recursive(k-1) + fibonacci_recursive(k-2)
+fin fibonacci_recursive
+
+procedure saisieEntier(message : chaine, msgErreur : chaine, borneMin : entier, borneMax : entier, MinInclus : booleen, MaxInclus : booleen ; valeur : entier)
+debut
+    # Demande a l'utilisateur de saisir une valeur entiere.
+
+    avec valeur : entier
+    
+    afficher(message)
+    saisir valeur
+
+    verifEntier(valeur, msgErreur, borneMin, borneMax, MinInclus, MaxInclus)
+
+    retourne valeur
+fin saisieEntier
+
+procedure verifEntier(valeur, msgErreur, borneMin, borneMax, MinInclus, MaxInclus)
+debut
+    # Verifie si un reel est bien dans un intervale donne.
+
+    si MinInclus et MaxInclus alors
+        tant que valeur < borneMin ou valeur > borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinonsi non MinInclus et MaxInclus alors
+        tant que valeur <= borneMin ou valeur > borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinonsi MinInclus et non MaxInclus alors
+        tant que valeur < borneMin ou valeur >= borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+    
+    sinon alors
+        tant que valeur <= borneMin or valeur >= borneMax faire
+            afficher(msgErreur)
+            saisir valeur
+fin verifEntier
+
